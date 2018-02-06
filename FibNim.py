@@ -42,15 +42,26 @@ def player2():
     beg = "true"
     print ("There are " + str(orig) + " coins on the table")
 
+def comp():
+    global last
+    global orig
+    global beg
+    if orig <= 2*last:
+        cplay = orig
+    else:
+        cplay = orig // 4
+    print("Computer chose the number " + str(cplay))
+    last = cplay
+    orig -= last
+    print ("There are " + str(orig) + " coins on the table")
+
 def playagain():
     global orig
     global last
-    global beg
     x = input("Play again? (y/n) ")
     if x == "y":
         orig = random.randint(20,1000)
         last = (orig - 1) / 2
-        beg = "false"
         game()
     else:
         exit()
@@ -66,15 +77,22 @@ def multiplayer():
     print("Player two wins!!")
     playagain()
 
-def game():
+def oneplayer():
     print ("There are " + str(orig) + " coins on the table")
     while orig != 0:
         player1()
         if orig == 0:
             print("Player one wins!!")
             playagain()
-        player2()
-    print("Player two wins!!")
+        comp()
+    print("Computer wins!!")
     playagain()
+
+def game():
+    playmode = input("Enter 1 for one player or 2 for two players: ")
+    if playmode == "1":
+        oneplayer()
+    else:
+        multiplayer()
     
 game()
