@@ -54,6 +54,8 @@ def comp():
         cplay = orig
     else:
         cplay = orig // 4
+        if cplay > 2*last:
+            cplay = 2*last
         if cplay == 0:
             cplay = 1
     print("Computer chose the number " + str(cplay))
