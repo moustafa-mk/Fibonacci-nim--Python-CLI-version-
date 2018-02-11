@@ -1,4 +1,5 @@
 import random
+import time
 
 orig = random.randint(20,1000)
 last = (orig - 1) / 2
@@ -58,6 +59,8 @@ def comp():
             cplay = 2*last
         if cplay == 0:
             cplay = 1
+    print("Computer:Hmm...")
+    time.sleep(1.5)
     print("Computer chose the number " + str(cplay))
     last = cplay
     orig -= last
@@ -66,10 +69,12 @@ def comp():
 def playagain():
     global orig
     global last
+    global beg
     x = input("Play again? (y/n) ")
     if x == "y":
         orig = random.randint(20,1000)
         last = (orig - 1) / 2
+        beg = "fasle"
         game()
     else:
         exit()
